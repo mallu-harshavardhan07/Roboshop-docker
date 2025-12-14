@@ -1,9 +1,14 @@
-FROM maven
+FROM maven:3.9.4-eclipse-temurin-17
+
 WORKDIR /opt/server
+
 COPY pom.xml .
-COPY src/*  /opt/server/
-RUN mvn clean package
-RUN target/shipping-1.0.jar shipping.jar
+COPY src/ ./src/
+
+RUN mvn clean package -DskipTests
+RUN mv target/shipping-1.0.jar shipping.jar
+
 ENV CART_ENDPOINT=cart:8080 \
     DB_HOST=mysql
-CMD [ "java","-jar","shipping.jar" ]
+
+CMD ["java", "-jar", "shipping.jar"]
