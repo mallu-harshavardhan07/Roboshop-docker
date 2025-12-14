@@ -15,7 +15,7 @@ services:
       volumes:
       - mongodb:/data/db
     catalogue:
-      image: harshavardhanreddy07/catalogue:V1
+      image: harshavardhanreddy07/catalogue:v1
       container_name: catalogue
       depends_on:
       - mongodb
